@@ -1,0 +1,38 @@
+Naive Bayes Cancer Classifier
+Y : Query
+X : Observation
+
+Y : cancer prob
+X : mammogram prob
+
+--
+
+NB Classifier for Digits
+P(Fy,x = on|Y)
+Y숫자일때 y,x칸이 칠해져있을 확률
+ㄴ conditional probabiltiy table
+
+P(Y) : class prob === prior prob
+Y숫자일때 (전체 확률)0.1이다
+
+P(Y|F0,0...F15,15) : posterior prob - 이 가장 높은 posterior 확률이 높은걸 선택
+
+P(B|A) = P(A|B) * P(B) / P(A) 인데 P(F)는 모두 같으므로(전 좌표에 칠해질 확률의 합) 분자값만 가지고 비교해도 됌
+
+따라서 P(Y|F0,0...F15,15)(posterior prob)는 P(Y)*sigma(i,j)(P(Fi,j|Y)) (이를 likelihood라 함) 에 비례함 (같지않음)
+
+--
+
+머신러닝에서 중요한 컨셉 : Overfitting
+ㄴ데이터로부터 학습한 모델이 데이터에 fit이 너무 잘되면 새로운 데이터에 대해 일반화하기 어려워질수 있는 것.
+
+확률값이 0.0이 되는 경우는 바람직하지 않다 (never를 의미)
+
+이를 해결하기 위한것 : Smoothing
+
+이 중 하나 : Laplace Smoothing
+실제로 관찰한것보다 K번씩 더 봤다고 하기 (보통 k=1)
+
+Head Head Tail
+원래 2/3
+LAP : 2+k/2(head)+k+1(tail)+k
