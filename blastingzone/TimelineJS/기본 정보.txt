@@ -1,0 +1,5 @@
+HomePage : http://timeline.knightlab.com/
+Github : https://github.com/NUKnightLab/TimelineJS
+
+
+구글 드라이브에서 엑셀 형태로 만들면 타임라인으로 재구성 해 준다. 짱짱.
