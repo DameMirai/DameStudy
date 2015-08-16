@@ -1,0 +1,23 @@
+<html>
+<head>
+        <!-- jQuery -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <!-- BEGIN TimelineJS -->
+        <script type="text/javascript" src="https://cdn.knightlab.com/libs/timeline/latest/js/storyjs-embed.js"></script>
+        <script>
+            $(document).ready(function() {
+                createStoryJS({
+                    type:       'timeline',
+                    width:      '800',
+                    height:     '600',
+                    source:     'https://docs.google.com/spreadsheets/d/1oWYjYJGosRguGqjhSJ12hhRA9DaJm1pH4Wttu--H4nE/pubhtml',
+                    embed_id:   'my-timeline'
+                });
+            });
+        </script>
+        <!-- END TimelineJS -->
+    </head>
+    <body>  
+        <div id="my-timeline"></div>
+    </body>
+</html>
