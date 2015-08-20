@@ -41,6 +41,8 @@ function getDataFromURL(imgUrl)
     console.debug("getDataFromURL 함수 시작");
     var deferred = $.Deferred(); //new 키워드는 optional
 
+    // $.ajax에 메소드 체이닝을 먹인 것을 보면 알겠지만
+    // 사실 $.ajax도 promise 객체를 반환한다
     $.ajax({
         url : imgUrl,
         dataProcess : false
