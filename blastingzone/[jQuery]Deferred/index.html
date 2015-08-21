@@ -19,26 +19,31 @@
 <script>
     $(document).ready(function(){
         $("#getImageBtn").click(function(){
-            console.debug("버튼 클릭!");
+            console.debug("1. 버튼 클릭!");
             var imgUrl = 'https://cdn.namu.wiki/r/http%3A%2F%2Fimg2.ruliweb.daum.net%2Fimg%2Fimg_link7%2F820%2F819662_1.jpg';
             var promise = getDataFromURL(imgUrl);
 
+            // 이 promise 객체는 getDataFromURL 함수의 var deferred 가 반환된 것이다.
+            // $.ajax가 성공해서 $.ajax.done 로직이 실행되면 deferred.resolve(result)를 타고
+            // promise  변수도 done 로직으로 들어온다.
             promise.done(function(result){
-                console.debug("이미지 부착");
+                console.debug("ajax성공 처리 이미지 부착");
                 $("#deferred_result img").attr("src", "data:image/png;base64"+result);
             });
 
+            // $.ajax가 실패할 경우 deferred.reject(result)로 인해
+            // promise 변수도 fail로 처리된다.
             promise.fail(function(result){
-                console.debug("ajax실패");
+                console.debug("ajax실패 처리");
                 $("#deferred_result img").attr("src", imgUrl);
             });
-            console.debug("버튼 클릭 이벤트 종료");
+            console.debug("4. 버튼 클릭 이벤트 종료");
         });
     });
 
 function getDataFromURL(imgUrl)
 {
-    console.debug("getDataFromURL 함수 시작");
+    console.debug("2. getDataFromURL 함수 시작");
     var deferred = $.Deferred(); //new 키워드는 optional
 
     // $.ajax에 메소드 체이닝을 먹인 것을 보면 알겠지만
@@ -47,14 +52,19 @@ function getDataFromURL(imgUrl)
         url : imgUrl,
         dataProcess : false
     })
+        // ajax가 성공하면 done 로직으로
         .done(function(result){
+            console.debug("ajax 성공");
+            // deferred resolve는 성공 로직에 할당된 콜백 함수를 동작시킨다.
             deferred.resolve(result);
         })
         .fail(function(result){
+            console.debug("ajax 실패");
+            // deferred reject는 실패 로직에 할당된 콜백 함수를 동작시킨다.
             deferred.reject(result);
         });
 
-    console.debug("getDataFromURL 함수 끝");
+    console.debug("3. getDataFromURL 함수 끝");
     return deferred.promise();
 }
 
