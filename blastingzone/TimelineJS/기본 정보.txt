@@ -1,0 +1,10 @@
+HomePage : http://timeline.knightlab.com/
+Github : https://github.com/NUKnightLab/TimelineJS
+
+
+구글 드라이브에서 엑셀 형태로 만들면 타임라인으로 재구성 해 준다. 짱짱.
+
+간단히 스텝을 요약하면
+
+1. 구글 드라이브에서 템플릿에 맞게 엑셀 파일을 짠다
+2. 
