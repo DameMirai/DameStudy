@@ -1,0 +1,11 @@
+@import url(http://fonts.googleapis.com/css?family=Amatic+SC:400,700);
+
+html,body{
+    padding:0;
+    margin:0;
+}
+
+.font-load{
+    font-family: 'Amatic SC', cursive;
+    position:absolute;
+}
