@@ -5,8 +5,70 @@
     <meta charset="utf-8" />
 
     <title>CSS Layout 정리</title>
+    <style>
+        .comp_border_cornflowerblue {
+            border : solid;
+            border-width : 3px;
+            border-color : cornflowerblue;
+        }
+        .comp_text_emphasis_cornflowerblue {
+            float:left;
+            color : white;
+            background-color : cornflowerblue;
+        }
+
+        .comp_border_coral {
+            border : solid;
+            border-width : 3px;
+            border-color : coral;
+        }
+        .comp_text_emphasis_coral {
+            float:left;
+            color : white;
+            background-color : coral;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="comp_border_cornflowerblue" style="width : 900px; height : 900px;">
+        <span class="comp_text_emphasis_cornflowerblue">div</span>
+        <span style="clear:left; float:left;">
+            width : 900px <br />
+            height : 900px <br />
+        </span>
+        <div class="comp_border_cornflowerblue" style="position:relative; width : 500px; height: 300px; margin : 250px 50px 20px 20px;">
+            <span class="comp_text_emphasis_cornflowerblue" style="">relative div</span>
+            <span style="clear:left; float:left;">
+                width : 500px <br />
+                height : 300px <br />
+                margin : 250px 50px 20px 20px <br />
+            </span>
+            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; right:0;">
+                <span class="comp_text_emphasis_coral">absolute div</span>
+                <span style="clear:left; float:left;">
+                    width : 200px <br />
+                    height : 120px <br />
+                    right : 0px <br />
+                </span>
+            </div>
+            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; bottom:0;">
+                <span class="comp_text_emphasis_coral">absolute div</span>
+                <span style="clear:left; float:left;">
+                    width : 200px <br />
+                    height : 120px <br />
+                    bottom : 0px <br />
+                </span>
+            </div>
+            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; bottom:-30px; right:-50px;">
+                <span class="comp_text_emphasis_coral">absolute div</span>
+                <span style="clear:left; float:left;">
+                    width : 200px <br />
+                    height : 120px <br />
+                    bottom : -30px <br />
+                    right : -50px <br />
+                </span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
