@@ -6,44 +6,50 @@
 
     <title>CSS Layout 정리</title>
     <style>
-        .comp_border_cornflowerblue {
+        .comp_border {
             border : solid;
             border-width : 3px;
-            border-color : cornflowerblue;
         }
+
         .comp_text_emphasis_cornflowerblue {
             float:left;
             color : white;
             background-color : cornflowerblue;
         }
 
-        .comp_border_coral {
-            border : solid;
-            border-width : 3px;
-            border-color : coral;
+        .border_color_cornflowerblue {
+            border-color : cornflowerblue;
         }
+
         .comp_text_emphasis_coral {
             float:left;
             color : white;
             background-color : coral;
         }
+
+        .border_color_coral {
+            border-color : coral;
+        }
+
     </style>
 </head>
 <body>
-    <div class="comp_border_cornflowerblue" style="width : 900px; height : 900px;">
+    <!-- largest box start -->
+    <div class="comp_border border_color_cornflowerblue" style="width : 900px; height : 3900px;">
         <span class="comp_text_emphasis_cornflowerblue">div</span>
         <span style="clear:left; float:left;">
             width : 900px <br />
-            height : 900px <br />
+            height : 3900px <br />
         </span>
-        <div class="comp_border_cornflowerblue" style="position:relative; width : 500px; height: 300px; margin : 250px 50px 20px 20px;">
+        <!-- inner relative container -->
+        <div class="comp_border border_color_cornflowerblue" style="position:relative; width : 500px; height: 300px; margin : 250px 50px 20px 20px;">
             <span class="comp_text_emphasis_cornflowerblue" style="">relative div</span>
             <span style="clear:left; float:left;">
                 width : 500px <br />
                 height : 300px <br />
                 margin : 250px 50px 20px 20px <br />
             </span>
-            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; right:0;">
+            <div class="comp_border border_color_coral" style="position:absolute; width : 200px; height: 120px; right:0;">
                 <span class="comp_text_emphasis_coral">absolute div</span>
                 <span style="clear:left; float:left;">
                     width : 200px <br />
@@ -51,7 +57,7 @@
                     right : 0px <br />
                 </span>
             </div>
-            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; bottom:0;">
+            <div class="comp_border border_color_coral" style="position:absolute; width : 200px; height: 120px; bottom:0;">
                 <span class="comp_text_emphasis_coral">absolute div</span>
                 <span style="clear:left; float:left;">
                     width : 200px <br />
@@ -59,7 +65,7 @@
                     bottom : 0px <br />
                 </span>
             </div>
-            <div class="comp_border_coral" style="position:absolute; width : 200px; height: 120px; bottom:-30px; right:-50px;">
+            <div class="comp_border border_color_coral" style="position:absolute; width : 200px; height: 120px; bottom:-30px; right:-50px;">
                 <span class="comp_text_emphasis_coral">absolute div</span>
                 <span style="clear:left; float:left;">
                     width : 200px <br />
@@ -69,6 +75,24 @@
                 </span>
             </div>
         </div>
+        <!-- inner relative container end 1 -->
+
+        <div class="comp_border border_color_cornflowerblue" style="position:static; width : 150px; height: 250px;">
+            <span class="comp_text_emphasis_cornflowerblue">static div</span>
+            <span style="clear:left; float:left;">
+                width : 150px; <br/>
+                height : 250px; <br/>
+            </span>
+        </div>
+
+        <div class="comp_border border_color_coral" style="position:fixed; width:800px; height:100px;">
+            <span class="comp_text_emphasis_coral">fixed div</span>
+            <span style="clear:left; float:left;">
+                width : 800; <br />
+                height : 100px; <br />
+            </span>
+        </div>
     </div>
+    <!-- largest box end -->
 </body>
 </html>
