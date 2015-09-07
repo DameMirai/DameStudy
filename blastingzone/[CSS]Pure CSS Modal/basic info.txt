@@ -1,0 +1,3 @@
+﻿http://www.webdesignerdepot.com/2012/10/creating-a-modal-window-with-html5-and-css3/
+
+JS 안쓰고 모달을 만들 수 있는 좋은 예제.
