@@ -2,6 +2,46 @@
  * Created by MorningWind on 8/27/2015.
  */
 // ref : http://www.goodboydigital.com/pixi-js-tutorial-getting-started/
+// ref : https://github.com/jquery-boilerplate/jquery-boilerplate
+
+
+;(function ($, window, document, undefined) {
+    var gameName = "WebGame";
+    defaults = {
+        canvasSize: {x:640, y:690}
+    };
+
+    function Game( element, options ) {
+        this.element = element;
+        this.settings = $.extend( {}, defaults, options );
+        this._defaults = defaults;
+        this._name = gameName;
+
+        this.init();
+    }
+
+    // Avoid Plugin.prototype conflicts
+    $.extend(Game.prototype, {
+        init: function () {
+            this.initCall();
+        },
+        initCall: function () {
+            console.log("Hello World!");
+        }
+    });
+
+    // A really lightweight plugin wrapper around the constructor,
+    // preventing against multiple instantiations
+    $.fn[ gameName ] = function ( options ) {
+        return this.each(function() {
+            if ( !$.data( this, "plugin_" + gameName ) ) {
+                $.data( this, "plugin_" + gameName, new Game( this, options ) );
+            }
+        });
+    };
+
+})( jQuery, window, document );
+
 function PIXITest()
 {
     var stage = new PIXI.Container();
@@ -49,3 +89,4 @@ function PIXITest()
     }
 
 }
+
