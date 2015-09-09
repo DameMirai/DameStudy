@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Margin Collapse</title>
+
+    <style>
+        div {
+            border : 3px solid #ff6a00;
+        }
+        p {
+            border : 3px solid #4800ff;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:200px; height:200px;">
+        <p>
+            Hello World?
+        </p>
+        <p>
+            Yes. Hello World.
+        </p>
+    </div>
+    <br/>
+    <!-- MAX(50, 50) == 50 이므로 p 사이의 margin은 50이 된다. -->
+    <div style="width:500px; display : inline-block;">
+        <p style="margin-top : 50px; margin-bottom : 50px;">
+            margin-top : 50px && margin bottom : 50px
+        </p>
+        <p style="margin-top : 50px; margin-bottom : 50px;">
+            margin-top : 50px && margin bottom : 50px
+        </p>
+    </div>
+
+    <div style="width:500px; display : inline-block;">
+        <= 왜 P 사이의 간격이 <br/> 위쪽 P의 margin-botton + 아래쪽 P의 margin-top이 아닐까?
+    </div>
+    
+    <!-- MAX(50, 50) == 50 이므로 p 사이의 margin은 50이 된다. -->
+    <br/>
+    <br />
+    <div style="width:500px; display : inline-block;">
+        <p style="margin-top : 50px; margin-bottom : 50px;">
+            margin-top : 50px && margin bottom : 50px
+        </p>
+        <p style="margin-top : 100px; margin-bottom : 100px;">
+            margin-top : 100px && margin bottom : 100px
+        </p>
+    </div>
+</body>
+</html>
