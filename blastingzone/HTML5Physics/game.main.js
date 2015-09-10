@@ -23,10 +23,35 @@
     // Avoid Plugin.prototype conflicts
     $.extend(Game.prototype, {
         init: function () {
-            this.initCall();
+            this.stage = new PIXI.Stage(0x334499);
+
+            this.scene = new PIXI.DisplayObjectContainer();
+            this.stage.addChild(this.scene);
+
+            this.renderer = PIXI.autoDetectRenderer(defaults.canvasSize.x, defaults.canvasSize.y);
+
+            $(this.element).append(this.renderer.view);
+
+            requestAnimationFrame(this.animate.bind(this));
+
+            this.loadAssets();
+
         },
-        initCall: function () {
-            console.log("Hello World!");
+        loadAssets:function(){
+            var loader = new PIXI.AssetLoader(['assets/interface.json']);
+            loader.onComplete = this.onLoadAssets.bind(this);
+
+            loader.load();
+        },
+        onLoadAssets:function(){
+            var texture = PIXI.Texture.fromImage('bg.png');
+            var paperBG = new PIXI.Sprite(texture);
+            this.scene.addChild(paperBG);
+        },
+        animate: function(){
+            requestAnimationFrame(this.animate.bind(this));
+
+            this.renderer.render(this.stage);
         }
     });
 
