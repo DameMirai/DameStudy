@@ -1,0 +1,18 @@
+{
+    "manifest_version" : 2,
+
+    "name" : "No More D",
+    "description" : "더이상의 됬은 용납할 수 없어서 만들게 됐다",
+    "version" : "0.12.0",
+
+    "browser_action" : {
+        "default_icon" : "icon.png",
+        "default_popup" : "popup.html"
+    },
+    "permissions" : [
+        "activeTab",
+        "https://ajax.googleapis.com/",
+        "tabs",
+        "<all_urls>"
+    ]
+}
