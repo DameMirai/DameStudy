@@ -24,10 +24,12 @@ function createGameBoard()
     // create blank board
     for (var row = 0; row < height; ++row)
     {
+        blankTileHtml += "<div style='width:"+ width * 64 +"px;'>";
         for (var col = 0; col < width; ++col)
         {
             blankTileHtml += "<div class='gameTile'></div>";
         }
+        blankTileHtml += "</div>";
     }
 
     $('#game_board').append(blankTileHtml);
