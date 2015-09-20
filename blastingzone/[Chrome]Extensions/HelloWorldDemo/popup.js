@@ -27,10 +27,16 @@ function createGameBoard()
         blankTileHtml += "<div style='width:"+ width * 64 +"px;'>";
         for (var col = 0; col < width; ++col)
         {
-            blankTileHtml += "<div class='gameTile'></div>";
+            blankTileHtml += "<div class='gameTile'" + "data-x='" + row + "' data-y='" + col + "' ></div>";
         }
         blankTileHtml += "</div>";
     }
 
     $('#game_board').append(blankTileHtml);
+}
+
+function getTileObj(x, y)
+{
+    console.debug($('.gameTile[data-x=' + x + '][data-y=' + y + ']'));
+    return $('.gameTile[data-x=' + x + '][data-y=' + y + ']');
 }
