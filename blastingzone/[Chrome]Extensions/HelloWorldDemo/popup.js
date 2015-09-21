@@ -1,4 +1,5 @@
 var gameBoard = [];
+var rawWordList = ['apple', 'banana', 'pineapple', 'mango'];
 
 $(document).ready(function () {
     createGameBoard();
@@ -39,4 +40,12 @@ function getTileObj(x, y)
 {
     console.debug($('.gameTile[data-x=' + x + '][data-y=' + y + ']'));
     return $('.gameTile[data-x=' + x + '][data-y=' + y + ']');
+}
+
+function setPuzzleWord(wordList)
+{
+    // randomly select word
+    var maxIdx = wordList.length - 1;
+    console.debug(wordList.length);
+    console.debug(Math.floor(Math.random()));
 }
