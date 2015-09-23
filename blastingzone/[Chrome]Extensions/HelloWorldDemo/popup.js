@@ -2,13 +2,17 @@ var gameBoard = [];
 var rawWordList = ['apple', 'banana', 'pineapple', 'mango', 'blueberry', 'guava', 'cherry', 'grape'];
 
 $(document).ready(function () {
-    createGameBoard();
     $('#game_board').html("<h2>Change</h2>");
 
     $('#board_create_btn').click(function () {
         createGameBoard();
     });
 });
+
+function clearGameBoard()
+{
+    $('#game_board').clear();
+}
 
 function createGameBoard()
 {
