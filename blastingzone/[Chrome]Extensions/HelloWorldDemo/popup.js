@@ -73,13 +73,16 @@ function addWordToWordManager(word)
 {
     if (typeof width === "number" && typeof height === "number")
     {
+        // if word length is longer than puzzle board width
         var isHorizon = false;
         if (word.length >= width) isHorizon = true;
 
+        // if word length is longer than puzzle board height
         var isVertical = false;
         if (word.length >= height) isVertical = true;
 
-        if (isHorizon === false && isVertical === false) return; // puzzle map is too small
+        // if puzzle map is too small, escape loop
+        if (isHorizon === false && isVertical === false) return; 
 
 
     }
@@ -88,4 +91,23 @@ function addWordToWordManager(word)
         console.debug("Map Size Error");
         return;
     }
+}
+
+function findCrossIdxBetweenWords(firstWord, secondWord)
+{
+    var result = {};
+
+    for(var i = 0; i < firstWord.length; ++i)
+    {
+        var indexOfSecond = secondWord.indexOf(firstWord[i]);
+
+        if(indexOfSecond !== -1)
+        {
+            if (result[i] === undefined) result[i] = [];
+
+            result[i].push(indexOfSecond);
+        }
+    }
+
+    return result;
 }
