@@ -14,11 +14,13 @@ $(document).ready(function () {
 
 function clearGameBoard()
 {
-    $('#game_board').clear();
+    $('#game_board').empty();
 }
 
 function createGameBoard()
 {
+    clearGameBoard();
+
     width = $('input[name=board_width_len]').val();
     if (width === "") width = 5;
     else width = parseInt(width);
