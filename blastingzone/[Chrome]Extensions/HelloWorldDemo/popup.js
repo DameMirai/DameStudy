@@ -2,7 +2,7 @@ var gameBoard = [];
 var rawWordList = ['apple', 'banana', 'pineapple', 'mango', 'blueberry', 'guava', 'cherry', 'grape'];
 var width = "";
 var height = "";
-var wordMap2D = [[]];
+var wordMap2D = null;
 
 $(document).ready(function () {
     $('#game_board').html("<h2>Change</h2>");
@@ -15,6 +15,18 @@ $(document).ready(function () {
 function clearGameBoard()
 {
     $('#game_board').empty();
+}
+
+function create2DArray(colLength, rowLength)
+{
+    var result = new Array(rowLength);
+    
+    for(i = 0; i < rowLength; ++i)
+    {
+        result[i] = new Array(colLength);
+    }
+
+    return result;
 }
 
 function createGameBoard()
@@ -43,6 +55,9 @@ function createGameBoard()
     }
 
     $('#game_board').append(blankTileHtml);
+
+    // create logical 2d array board
+    wordMap2D = create2DArray(width, height);
 }
 
 function getTileObj(x, y)
