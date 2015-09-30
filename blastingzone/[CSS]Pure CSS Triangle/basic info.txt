@@ -1,0 +1,2 @@
+example from :: https://css-tricks.com/snippets/css/css-triangle/
+all right reserved : https://css-tricks.com/
