@@ -9,7 +9,9 @@ function runExternalScript(fileName){
 }
 
 function onWindowLoad(){
+    runExternalScript("jquery-2.1.4.min.js");
     runExternalScript('killD.js');
+    // runExternalScript("http://code.jquery.com/jquery.min.js");
 }
 
 window.addEventListener('load', onWindowLoad, false);

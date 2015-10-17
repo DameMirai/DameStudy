@@ -22,4 +22,14 @@ String.prototype.searchAll = function (str, caseSensitive) {
     return results;
 };
 
-document.body.innerHTML = document.body.innerHTML.replaceAll('됬', '됐', false);
+function findElementByText(ele, text){
+    var target = $(ele + ":contains(" + text + ")").filter(function(){ return $(this).childElementCount === 0;});
+    return target;
+}
+
+console.log(findElementByText('a', '됬'));
+console.log(findElementByText('div', '됬'));
+console.log(findElementByText('p', '됬'));
+console.log(findElementByText('b', '됬'));
+// document.body.innerHTML = document.body.innerHTML.replaceAll('됬', '됐', false);
+// console.log($("p:contains('됬')"));
