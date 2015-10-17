@@ -154,6 +154,7 @@ PHP의 영문모를 동작에 고통받고 있자니 [해결왕 해결킹 정갓
 
 한 줄로 정리하자면 PHP에서는 `static`으로 선언된 것들도 리퀘스트 한 번 지나면 끝장난다는 것이다. 그래서 다른 언어(내 경우엔 주로 자바)처럼 두고두고 꺼내먹는 용도로 쓸 수가 없다고...
 서버측에 뭔가 보관하고 싶은 게 있으면 아래와 같은 방법들을 사용하면 된다고 한다.
+
 1. [Superglobal](http://www.w3schools.com/php/php_superglobals.asp)의 `$_SESSION`을 사용 (세션 scope를 사용하면 되는 경우) <strike>맨날 `$_GET`이랑 `$_POST`만 써서 세션도 있다는 걸 까먹고 있었...</strike>    
 2. [APC(Alternative PHP Cache)](http://php.net/apc) 사용         
     ([APC를 언제 사용하면 적절한지에 대한 읽을거리](http://stackoverflow.com/questions/3713311/how-do-i-save-data-in-an-application-scope-in-php))      
@@ -168,7 +169,7 @@ PHP의 영문모를 동작에 고통받고 있자니 [해결왕 해결킹 정갓
 다만 의아한 것은 '어차피 static 객체가 유지가 안 될 거면 싱글톤 패턴에 무슨 의미가 있나?' 라는 점...    
 싱글톤 클래스를 사용하는 이유는 애플리케이션 전체에서 단 하나만 존재하면 되는 객체를 중복 생성하지 않기 위해서인데
 (그래서 생성자도 호출 못하게 막고 객체 자체는 `static`하게 만들어서 어디에서나 사용할 수 있게 하는 것),
-이렇게 만든 객체가 어차피 request scope가 사-망함과 동시에 사라진다면 `static`으로 만드는 의미가......?!??
+이렇게 만든 객체가 어차피 request scope가 사-망함과 동시에 사라진다면 `static`으로 만드는 의미가......?!??     
 그냥 전역에 인스턴스든 함수든 놔두고 `global` 불러서 쓰면 되지 않을까....?!
 
 [애초에 PHP란건 PHP 프로세스 간에 직접 영향을 주지 않게 만들어져 있다](https://www.quora.com/Why-doesnt-php-have-application-variables-like-asp-and-asp-net)는 얘길 보고 나니 더욱 아리송해졌다. 이쯤 되면 `static` 키워드로 싱글톤 객체를 구현하는 의의는 여러 사람이서 작업할 때 멋모르고 하나면 충분한 인스턴스를 여러 개 생성하지 못하게 하는 정도뿐인게 아닌지....?  
