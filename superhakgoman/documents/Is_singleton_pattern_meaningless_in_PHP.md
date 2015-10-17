@@ -154,12 +154,12 @@ PHP의 영문모를 동작에 고통받고 있자니 [해결왕 해결킹 정갓
 
 한 줄로 정리하자면 PHP에서는 `static`으로 선언된 것들도 리퀘스트 한 번 지나면 끝장난다는 것이다. 그래서 다른 언어(내 경우엔 주로 자바)처럼 두고두고 꺼내먹는 용도로 쓸 수가 없다고...
 서버측에 뭔가 보관하고 싶은 게 있으면 아래와 같은 방법들을 사용하면 된다고 한다.
-1. [Superglobal](http://www.w3schools.com/php/php_superglobals.asp)의 `$_SESSION`을 사용 (세션 scope를 사용하면 되는 경우) <strike>맨날 `$_GET`이랑 `$_POST`만 써서 세션도 있다는 걸 까먹고 있었...</strike>
-2. [APC(Alternative PHP Cache)](http://php.net/apc) 사용    
-    ([APC를 언제 사용하면 적절한지에 대한 읽을거리](http://stackoverflow.com/questions/3713311/how-do-i-save-data-in-an-application-scope-in-php))
-3. [Memcache](http://php.net/manual/kr/book.memcache.php)/[Memcached](http://php.net/manual/kr/book.memcached.php) 사용    
-    ([When should I use Memcache instead of Memcached?](http://stackoverflow.com/questions/1442411/when-should-i-use-memcache-instead-of-memcached))
-4. 그냥 DB 사용
+1. [Superglobal](http://www.w3schools.com/php/php_superglobals.asp)의 `$_SESSION`을 사용 (세션 scope를 사용하면 되는 경우) <strike>맨날 `$_GET`이랑 `$_POST`만 써서 세션도 있다는 걸 까먹고 있었...</strike>    
+2. [APC(Alternative PHP Cache)](http://php.net/apc) 사용         
+    ([APC를 언제 사용하면 적절한지에 대한 읽을거리](http://stackoverflow.com/questions/3713311/how-do-i-save-data-in-an-application-scope-in-php))      
+3. [Memcache](http://php.net/manual/kr/book.memcache.php)/[Memcached](http://php.net/manual/kr/book.memcached.php) 사용        
+    ([When should I use Memcache instead of Memcached?](http://stackoverflow.com/questions/1442411/when-should-i-use-memcache-instead-of-memcached))   
+4. 그냥 DB 사용      
 
 ### 의문
 
