@@ -1,6 +1,19 @@
 // var chatBoard = document.getElementById("chatBoard");
 DEV_MODE = true;
 
+// var ChatWindow = function(){
+//     var instance = {};
+//     var wHead = document.querySelector("#chatBoard > thead");
+//     var wBody = document.querySelector("#chatBoard > tbody");
+//     instance.addRow = function addRow(row){
+//         if(row.tagName != 'TR' && row.tagName != 'tr'){
+//             console.error("this is not table row");
+//             return;
+//         }
+//         wBody.appendChild(row);
+//     };
+//     return instance;
+// }();
 var ChatWindow = function(){
     function ChatWindow(){
         var wHead = document.querySelector("#chatBoard > thead");
@@ -27,10 +40,6 @@ function makeElement(name, attributes){
     }
     return element;
 }
-
-var TestObject = Parse.Object.extend("TestObject");
-var testObject = new TestObject();
-var testQuery = new Parse.Query(TestObject);
 
 function getMissedProperty(obj, propArr){
     if(propArr.constructor.name !== 'Array'){
@@ -65,14 +74,15 @@ function ChatRow(rowData){
     this.getCreatedAt = function getCreatedAt(){
         return createdAt;
     };
-    this.toDOMElement = function toTableRowElement(){
-        var trElement = makeElement('tr');
-        trElement.appendChild(makeElement('td', {innerText : userName}));
-        trElement.appendChild(makeElement('td', {innerText : comment}));
-        trElement.appendChild(makeElement('td', {innerText : createdAt}));
-        return trElement;
-    };
 }
+
+ChatRow.prototype.toDOMElement = function(){
+    var trElement = makeElement('tr', {id : this.getObjectId()});
+    trElement.appendChild(makeElement('td', {innerText : this.getUserName()}));
+    trElement.appendChild(makeElement('td', {innerText : this.getComment()}));
+    trElement.appendChild(makeElement('td', {innerText : this.getCreatedAt()}));
+    return trElement;
+};
 
 var row = new ChatRow({
     objectId : '001',
@@ -81,7 +91,30 @@ var row = new ChatRow({
     createdAt : Date(),
 });
 
-var ChatRowPool = {};
+var row2 = new ChatRow({
+    objectId : '002',
+    userName : "ㄹㄹㄹ",
+    comment : 'ㅎㅇㅎㅇ',
+    createdAt : Date(),
+});
+
+var ChatTable = (function makeTable(){
+    var instance = {};
+    var table = {};
+    instance.getRow = function(objectId){
+        if(table.hasOwnProperty(objectId)){
+            return table[objectId];
+        }
+    };
+    instance.addRow = function(row){
+        if(row instanceof ChatRow !== true){
+            throw new TypeError('need ChatRow instance');
+        }
+        table[row.getObjectId()] = row;
+    };
+    
+    return instance;
+})();
 
 function sendChat(userName, Comment){
 
