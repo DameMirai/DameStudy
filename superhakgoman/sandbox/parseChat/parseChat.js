@@ -99,7 +99,9 @@ var row2 = new ChatRow({
 });
 
 var ChatTable = (function makeTable(){
-    var instance = {};
+    var instance = {
+        recentLoaded : undefined,
+    };
     var table = {};
     instance.getRow = function(objectId){
         if(table.hasOwnProperty(objectId)){
@@ -112,7 +114,7 @@ var ChatTable = (function makeTable(){
         }
         table[row.getObjectId()] = row;
     };
-    
+
     return instance;
 })();
 
