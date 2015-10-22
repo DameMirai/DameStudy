@@ -102,17 +102,35 @@ var ChatTable = (function makeTable(){
     var instance = {
         recentLoaded : undefined,
     };
-    var table = {};
+    var added = {};
+    var loaded = [];
     instance.getRow = function(objectId){
-        if(table.hasOwnProperty(objectId)){
-            return table[objectId];
+        if(added.hasOwnProperty(objectId)){
+            return added[objectId];
         }
     };
     instance.addRow = function(row){
         if(row instanceof ChatRow !== true){
             throw new TypeError('need ChatRow instance');
         }
-        table[row.getObjectId()] = row;
+        var oId = row.getObjectId();
+        if (added.hasOwnProperty(oId)) {
+            // debugger;
+            console.error("exist row id : " + oId);
+        }else {
+            loaded.push(row);
+        }
+    };
+    instance.loadNewRow = function(){
+        if(loaded.length > 0){
+            var row = loaded.shift();
+            var oId = row.getObjectId();
+            if (added.hasOwnProperty(oId)) {
+                return undefined;
+            }
+            added[oId] = row;
+            return row;
+        }
     };
 
     return instance;
