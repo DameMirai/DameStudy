@@ -22,17 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
+            
         </tbody>
     </table>
     <form class="chatInput" action="javascript:" onsubmit="javascript:onSubmit()">
@@ -52,6 +42,7 @@
             comment : document.querySelector("form.chatInput > input[name=comment]"),
             button : document.querySelector("form.chatInput > input[name=send]"),
         };
+        // var dd;
         function onSubmit(){
             var chatter = new ParseChat();
             chatter.set({
@@ -62,6 +53,7 @@
                 success: function(row) {
                     console.log('New object created with objectId: ' + row.id);
                     console.log(row);
+                    // dd = row;
                     var newRow = new ChatRow({
                         objectId : row.id,
                         userName : ChatInput.userName.value,
@@ -69,7 +61,7 @@
                         createdAt : row.createdAt,
                     });
                     ChatTable.addRow(newRow);
-                    ChatTable.recentLoaded = newRow.getCreatedAt();
+                    // ChatTable.recentLoaded = newRow.getCreatedAt();
                     ChatWindow.addRow(newRow.toDOMElement());
                 },
                 error: function(gameScore, error) {
@@ -89,6 +81,23 @@
             // 아예 objectId까지 클라에서 추가? (이건
             // 동기화 문제 있겠군 다른 클라에서 같은 키를 만들 수도 있으니) 동적 업뎃을 위한 전용 키를 사용? 으으음
             // ChatWindow.addRow(newRow.toDOMElement());
+        }
+        var resultset;
+        function onUpdate(){
+            var chatQuery = new Parse.Query(ParseChat);
+            if(ChatTable.recentLoaded !== undefined){
+                chatQuery.greaterThan('createdAt', ChatTable.recentLoaded)
+            }
+            chatQuery.select('objectId', 'userName', 'comment', 'createdAt');
+            chatQuery.find({
+                success : function(results){
+                    console.log(results);
+                    resultset = results;
+                },
+                error : function(error){
+                    console.log(error);
+                }
+            });
         }
     </script>
 </body>
