@@ -91,7 +91,8 @@
         chatQuery.select('objectId', 'userName', 'comment', 'createdAt');
         function onUpdate(){
             if(ChatTable.recentLoaded !== undefined){
-                chatQuery.greaterThan('createdAt', ChatTable.recentLoaded)
+                chatQuery.greaterThan('createdAt', ChatTable.recentLoaded);
+                chatQuery.ascending('createdAt');
             }
             chatQuery.find({
                 success : function(results){
@@ -119,6 +120,24 @@
                 }
             });
         }
+        function onLoad() {
+            onUpdate();
+            console.log('load');
+            var intervalId = window.setInterval(onUpdate, 3000);
+            window.addEventListener('focus', function(){
+                onUpdate();
+                console.log('focus');
+                if (intervalId === undefined) {
+                    intervalId = window.setInterval(onUpdate, 3000);
+                }
+            });
+            window.addEventListener('blur', function(){
+                console.log('blur');
+                window.clearInterval(intervalId);
+                intervalId = undefined;
+            });
+        }
+        window.addEventListener('load', onLoad);
     </script>
 </body>
 </html>
