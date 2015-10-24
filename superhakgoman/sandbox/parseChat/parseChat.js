@@ -1,19 +1,6 @@
 // var chatBoard = document.getElementById("chatBoard");
 DEV_MODE = true;
 
-// var ChatWindow = function(){
-//     var instance = {};
-//     var wHead = document.querySelector("#chatBoard > thead");
-//     var wBody = document.querySelector("#chatBoard > tbody");
-//     instance.addRow = function addRow(row){
-//         if(row.tagName != 'TR' && row.tagName != 'tr'){
-//             console.error("this is not table row");
-//             return;
-//         }
-//         wBody.appendChild(row);
-//     };
-//     return instance;
-// }();
 var ChatWindow = function(){
     function ChatWindow(){
         var wHead = document.querySelector("#chatBoard > thead");
@@ -84,23 +71,13 @@ ChatRow.prototype.toDOMElement = function(){
     return trElement;
 };
 
-var row = new ChatRow({
-    objectId : '001',
-    userName : 'SFman',
-    comment : 'nothing to say',
-    createdAt : Date(),
-});
-
-var row2 = new ChatRow({
-    objectId : '002',
-    userName : "ㄹㄹㄹ",
-    comment : 'ㅎㅇㅎㅇ',
-    createdAt : Date(),
-});
-
 var ChatTable = (function makeTable(){
     var instance = {
         recentLoaded : undefined,
+    };
+    var timeTable = {
+        recentLoaded : undefined,
+        lastRecordedDate : undefined,
     };
     var added = {};
     var loaded = [];
@@ -115,7 +92,6 @@ var ChatTable = (function makeTable(){
         }
         var oId = row.getObjectId();
         if (added.hasOwnProperty(oId)) {
-            // debugger;
             console.error("exist row id : " + oId);
         }else {
             loaded.push(row);
@@ -132,10 +108,5 @@ var ChatTable = (function makeTable(){
             return row;
         }
     };
-
     return instance;
 })();
-
-function sendChat(userName, Comment){
-
-}

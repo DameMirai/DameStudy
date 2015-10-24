@@ -23,7 +23,6 @@
             </tr>
         </thead>
         <tbody>
-
         </tbody>
     </table>
     <form class="chatInput" action="javascript:" onsubmit="javascript:onSubmit()">
@@ -33,10 +32,6 @@
     </form>
     <script src="./parseChat.js"></script>
     <script type="text/javascript">
-        var TestObject = Parse.Object.extend("TestObject");
-        var testObject = new TestObject();
-        var testQuery = new Parse.Query(TestObject);
-
         var ParseChat = Parse.Object.extend("chatRow");
         var ChatInput = {
             userName : document.querySelector("form.chatInput > input[name=userName]"),
@@ -54,18 +49,7 @@
                 success: function(row) {
                     console.log('New object created with objectId: ' + row.id);
                     console.log(row);
-                    // dd = row;
-                    var newRow = new ChatRow({
-                        objectId : row.id,
-                        userName : ChatInput.userName.value,
-                        comment : ChatInput.comment.value,
-                        createdAt : row.createdAt,
-                    });
-                    // ChatTable.addRow(newRow);
-                    // ChatTable.recentLoaded = newRow.getCreatedAt();
-                    // ChatWindow.addRow(newRow.toDOMElement());
                     onUpdate();
-                    // ChatInput.userName.value = '';
                     ChatInput.comment.value = '';
                 },
                 error: function(gameScore, error) {
@@ -73,19 +57,6 @@
                     console.error(error);
                 }
             });
-            // var newRow = new ChatRow({
-            //     objectId : undefined,
-            //     userName : ChatInput.userName.value,
-            //     comment : ChatInput.comment.value,
-            //     createdAt : Date(),
-            // });
-            // Parse에 보내고 콜백으로 objectId 받아서 ChatTable에 추가
-            // 그거랑 상관없이 화면에는 먼저 추가 후 콜백 시에 objectId 추가 -> 그런데 이거 하려면 또 다른 키가 필요해지나.....
-            // 전송 완료 확인후에 화면에 추가?
-            // 아예 objectId까지 클라에서 추가? (이건
-            // 동기화 문제 있겠군 다른 클라에서 같은 키를 만들 수도 있으니) 동적 업뎃을 위한 전용 키를 사용? 으으음
-            // ChatWindow.addRow(newRow.toDOMElement());
-            // 이미 추가된 row가 있는지는 querySelector로 id 검색해서 판단
         }
         var resultset;
         var chatQuery = new Parse.Query(ParseChat);
