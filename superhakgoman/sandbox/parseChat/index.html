@@ -32,13 +32,13 @@
     </form>
     <script src="./parseChat.js"></script>
     <script type="text/javascript">
+        var REFRESH_TIME = 3000;
         var ParseChat = Parse.Object.extend("chatRow");
         var ChatInput = {
             userName : document.querySelector("form.chatInput > input[name=userName]"),
             comment : document.querySelector("form.chatInput > input[name=comment]"),
             button : document.querySelector("form.chatInput > input[name=send]"),
         };
-        // var dd;
         function onSubmit(){
             var chatter = new ParseChat();
             chatter.set({
@@ -58,7 +58,6 @@
                 }
             });
         }
-        var resultset;
         var chatQuery = new Parse.Query(ParseChat);
         chatQuery.select('objectId', 'userName', 'comment', 'createdAt');
         function onUpdate(){
@@ -69,7 +68,6 @@
             chatQuery.find({
                 success : function(results){
                     console.log(results);
-                    resultset = results;
                     for (var i in results) {
                         var row = new ChatRow({
                             objectId : results[i].id,
@@ -92,24 +90,23 @@
                 }
             });
         }
-        function onLoad() {
+        window.addEventListener('load', function onLoad(){
             onUpdate();
-            console.log('load');
-            var intervalId = window.setInterval(onUpdate, 3000);
+            // console.log('load');
+            var intervalId = window.setInterval(onUpdate, REFRESH_TIME);
             window.addEventListener('focus', function(){
                 onUpdate();
-                console.log('focus');
+                // console.log('focus');
                 if (intervalId === undefined) {
-                    intervalId = window.setInterval(onUpdate, 3000);
+                    intervalId = window.setInterval(onUpdate, REFRESH_TIME);
                 }
             });
             window.addEventListener('blur', function(){
-                console.log('blur');
+                // console.log('blur');
                 window.clearInterval(intervalId);
                 intervalId = undefined;
             });
-        }
-        window.addEventListener('load', onLoad);
+        });
     </script>
 </body>
 </html>

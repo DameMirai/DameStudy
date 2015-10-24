@@ -1,4 +1,3 @@
-// var chatBoard = document.getElementById("chatBoard");
 DEV_MODE = true;
 
 var ChatWindow = function(){
